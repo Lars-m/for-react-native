@@ -84,12 +84,15 @@ export const resolvers = {
       return positionFacade.findNearbyFriends(email, password, latitude, longitude, distance)
     },
 
-    getNearbyFriendLocations: async (_: any, { input }: { input: INearbyFriendsInput })=>{
+    getNearbyFriendLocations: async (_: any, { input }: { input: INearbyFriendsInput }) => {
       const { email, password, latitude, longitude, distance } = input
-      const friends = await positionFacade.findNearbyFriends(email, password, latitude, longitude, distance)
-      const friendsToReturn = friends.map((f:IPosition)=> {
-        return {email:f.email, name:f.name,longitude:f.location.coordinates[0],latitude:f.location.coordinates[1]}
+      console.log("-->", email, distance)
+
+      const friends = await positionFacade.findNearbyFriends(email, password, longitude, latitude, distance)
+      const friendsToReturn = friends.map((f: IPosition) => {
+        return { email: f.email, name: f.name, longitude: f.location.coordinates[0], latitude: f.location.coordinates[1] }
       })
+      console.log(friendsToReturn.length)
       return friendsToReturn
     }
   }

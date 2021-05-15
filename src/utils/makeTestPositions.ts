@@ -23,7 +23,7 @@ async function tester() {
   const f6 = { firstName: "f6", lastName: "Jensen", email: "f6@user.dk", password: hashedPW, role: "user" }
 
   const status = await friendsCollection.insertMany([f1, f2, f3, f4, f5, f6])
-
+n
   const positionCollection = db.collection("positions")
   await positionCollection.deleteMany({});
   await positionCollection.dropIndexes()
